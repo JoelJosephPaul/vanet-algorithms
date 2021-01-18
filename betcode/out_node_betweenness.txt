@@ -1,0 +1,6 @@
+Node 0: 0.2
+Node 1: 0.55
+Node 2: 0
+Node 3: 0
+Node 4: 0.1
+Node 5: 0.05
