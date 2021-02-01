@@ -1,0 +1,6 @@
+#finding max in vector in treeinfluence
+pair<string,float> item = *max_element(influence.begin(),influence.end(),
+	[](pair<string,float> a,pair<string,float> b)
+	{return a.second<b.second;}
+	);
+	//cout<<"max is "<<item.first<<" "<<item.second<<endl;
