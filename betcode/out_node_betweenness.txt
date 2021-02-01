@@ -1,6 +1,8 @@
-Node 0: 0.2
-Node 1: 0.55
-Node 2: 0
-Node 3: 0
-Node 4: 0.1
-Node 5: 0.05
+Node 0: 0
+Node 1: 0.111111
+Node 2: 0.190476
+Node 3: 0.015873
+Node 4: 0.206349
+Node 5: 0.238095
+Node 6: 0
+Node 7: 0

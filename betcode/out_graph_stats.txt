@@ -1,3 +1,0 @@
-Weighted: false
->#ofNodes: 6
->#ofEdges: 6
