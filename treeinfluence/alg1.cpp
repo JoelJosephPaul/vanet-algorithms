@@ -4,6 +4,8 @@
 #include <map>
 #include <algorithm>
 using namespace std;
+//to do it as in paper, influence of a node is number of children(if in tree form)
+// do postorder traversal
 int main()
 {
 	string buffer;
