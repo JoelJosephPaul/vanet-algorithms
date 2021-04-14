@@ -45,6 +45,6 @@ def op(level,d):
 			op(level+1,d[i])
 	
 for i in lst:
-	#op(1,i)
+	op(1,i)
 	r1,r2 = agg(i)
 	print(r1/r2)
