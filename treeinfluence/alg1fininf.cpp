@@ -2,6 +2,7 @@
 // aggregate if it was malicious
 // depends on number of siblings and influence of parent, not on number of children
 // tree must be represented in this program :(
+//to do, input file must contain time data too for tree
 
 #include <iostream>
 #include <fstream>
