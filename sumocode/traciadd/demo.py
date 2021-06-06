@@ -26,6 +26,7 @@ def get_options():
 
 # contains TraCI control loop
 def run():
+    lss = {"0":0,"1":3,"2":6,"3":9,"4":12,"ev_0":16}
     step = 0
     while traci.simulation.getMinExpectedNumber() > 0:
         traci.simulationStep()
@@ -34,9 +35,20 @@ def run():
         if step == 100:
          # traci.route.add("trip", ["e1", "e4"])
           traci.vehicle.add("7", "route_0", typeID="ev")
-        if step == 150:
-          position = traci.vehicle.getPosition('7')
-          print(position)
+          lss["7"] = step
+        
+        if step%10:
+            #ls = traci.domain.Domain.getIDList()
+            #print(ls)
+
+            #ls = traci.domain.getIDList()
+            print("step : ",step)
+            for vehi in lss:
+                if lss[vehi]<step:
+                    print(vehi,traci.vehicle.getPosition(vehi))
+        # if step == 150:
+        #   position = traci.vehicle.getPosition('7')
+        #   print(position)
         step += 1
     
     traci.close()

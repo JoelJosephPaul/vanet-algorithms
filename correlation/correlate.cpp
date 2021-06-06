@@ -5,6 +5,7 @@
 #include <vector>
 #include <sstream>
 #include <map>
+#include <math.h>
 using namespace std;
 
 int main()
@@ -43,35 +44,75 @@ int main()
 		lof[tim] = tlof;
 	}
 	outlierdata.close();
-	
-	cout<<"node influence table\n";
-	for(auto i:nodeinf)
+
+	cout << "node influence table\n";
+	for (auto i : nodeinf)
 	{
-		cout<<i.first<<"\t";
-		for(auto j:i.second)
+		cout << i.first << "\t";
+		for (auto j : i.second)
 		{
-			cout<<j.second<<"\t";
+			cout << j.second << "\t";
 		}
-		cout<<endl;
+		cout << endl;
 	}
 
-	cout<<"\nlof at time\n";
+	cout << "\nlof at time\n";
 
-	for(auto i:lof)
+	for (auto i : lof)
 	{
-		cout<<i.first<<" : "<<i.second<<endl;
+		cout << i.first << " : " << i.second << endl;
 	}
 
 	map<string, float> correlation;
 	int pi = time.size();
+	// for (auto i : nodeinf)
+	// {
+	// 	correlation[i.first] = 1;
+	// 	float sum = 0;
+	// 	for (auto j : time)
+	// 		sum += (lof[j] - nodeinf[i.first][j]) * (lof[j] - nodeinf[i.first][j]);
+	// 	//cout<<sum<<endl;
+	// 	correlation[i.first] -= 6 * sum / (pi * (pi - 1));
+	// }
+
+	float xavg = 0; //lof
+	for (auto k : lof)
+	{
+		xavg += k.second;
+	}
+	xavg /= pi;
+	float sdx = 0; //standard deviation
+	for (auto k : lof)
+	{
+		sdx += (k.second - xavg) * (k.second - xavg);
+	}
+	sdx = sqrt(sdx);
+
 	for (auto i : nodeinf)
 	{
-		correlation[i.first] = 1;
-		float sum = 0;
-		for (auto j : time)
-			sum += lof[j] - nodeinf[i.first][j] * lof[j] - nodeinf[i.first][j];
-		//cout<<sum<<endl;
-		correlation[i.first] -= 6 * sum / (pi * (pi - 1));
+		float yavg = 0; //influence
+		for (auto k : i.second)
+		{
+			yavg += k.second;
+		}
+		yavg /= pi;
+
+		float sdy = 0; //standard deviation
+		for (auto k : i.second)
+		{
+			sdy += (k.second - yavg) * (k.second - yavg);
+		}
+		sdy = sqrt(sdy);
+		float denom = sdx * sdy;
+		if (denom == 0)
+			correlation[i.first] = 0;
+		else
+		{
+			correlation[i.first]=0;
+			for(auto j:time)
+			correlation[i.first] += (lof[j]-xavg)*(nodeinf[i.first][j]-yavg);
+			correlation[i.first]/=denom;
+		}
 	}
 
 	cout << "correlation data\n";
