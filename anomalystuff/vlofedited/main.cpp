@@ -33,7 +33,7 @@ int main()
 
 	for (int i = 0; i < out.size(); i++)
 	{
-		cout << out.at(i).instance.GetValue(0) << " : ";
+		cout << out.at(i).instance.GetValue(0) << "\t";
 		cout << out.at(i).lof << endl;
 	}
 

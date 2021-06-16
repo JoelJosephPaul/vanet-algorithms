@@ -298,7 +298,7 @@ std::vector<LOF::outlier> LOF::GetOutliers(int k, std::vector<LOF::CPoint> vec_I
 		CPoint instance = vec_Instances.at(i);
 		vec_InstancesBackUp = vec_Instances;
 		vec_InstancesBackUp.erase(vec_InstancesBackUp.begin() + i);
-		CLof l(vec_InstancesBackUp, true);
+		CLof l(vec_InstancesBackUp, false);
 		double value = l.LocalOutlierFactor(k, instance);
 		std::cout<<"outval : "<<instance.GetValue(1)<<" : "<<value<<std::endl;
 		if (value>1.0)

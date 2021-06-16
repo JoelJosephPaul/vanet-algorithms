@@ -115,7 +115,7 @@ int main()
 
 	for (auto i : influence)
 	{
-		cout << i.first << " : " << i.second << endl;
+		cout << i.first << "\t" << i.second << endl;
 	}
 
 	return 0;
